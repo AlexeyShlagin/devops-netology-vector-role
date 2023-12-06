@@ -22,3 +22,10 @@
   ansible.builtin.service:
     name: vector.service
     state: restarted
+
+- name: Vector config file
+  become: true
+  ansible.builtin.template:
+    src: vector.yaml
+    dest: /etc/vector/vector.yaml
+    mode: "0755"
