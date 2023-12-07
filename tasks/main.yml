@@ -11,21 +11,15 @@
     deb: "./{{ vector_version }}_amd64.deb"
     state: present
 
-- name: Enable vector
-  become: true
-  ansible.builtin.systemd:
-    name: vector.service
-    enabled: true
-
-- name: Start vector service
-  become: true
-  ansible.builtin.service:
-    name: vector.service
-    state: restarted
-
 - name: Vector config file
   become: true
   ansible.builtin.template:
     src: vector.yaml
     dest: /etc/vector/vector.yaml
     mode: "0755"
+
+- name: Enable vector
+  become: true
+  ansible.builtin.systemd:
+    name: vector.service
+    enabled: true
