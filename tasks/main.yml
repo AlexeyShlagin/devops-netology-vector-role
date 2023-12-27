@@ -23,3 +23,6 @@
   ansible.builtin.systemd:
     name: vector.service
     enabled: true
+
+- name: Flush handlers
+  meta: flush_handlers
