@@ -1,4 +1,18 @@
 ---
+#- name: Ensure sudo is installed
+#  become: true
+#  ansible.builtin.yum:
+#    name: sudo
+#    state: present
+#- name: Ensure sudo is installed
+#  become: false
+#  ansible.builtin.raw: yum install -y sudo
+#  changed_when: false
+
+#- name: Symlink /usr/bin/python3 to /usr/bin/python
+#  ansible.builtin.raw: ln -s /usr/bin/python3 /usr/bin/python
+#  become: true
+
 # tasks file for vector-role
 - name: Get vector distrib
   ansible.builtin.get_url:
@@ -17,6 +31,7 @@
     src: vector.yaml
     dest: /etc/vector/vector.yaml
     mode: "0755"
+    notify: Start vector service
 
 - name: Enable vector
   become: true
@@ -24,5 +39,3 @@
     name: vector.service
     enabled: true
 
-- name: Flush handlers
-  meta: flush_handlers

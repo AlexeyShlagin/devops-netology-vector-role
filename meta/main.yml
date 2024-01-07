@@ -1,5 +1,7 @@
 galaxy_info:
-  author: your name
+  author: Aleksei
+  role_name: netology_vector
+  namespace: my_namespace
   description: your role description
   company: your company (optional)
 
