@@ -4,10 +4,17 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: centos_7
-    image: centos:7
-    pre_build_image: true  
+  - name: debian_buster_slim
+    image: debian:buster-slim
+    pre_build_image: true
 provisioner:
   name: ansible
 verifier:
   name: ansible
+  
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      debian_buster_slim:
+        ansible_python_interpreter: /usr/bin/python3

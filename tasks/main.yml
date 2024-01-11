@@ -13,6 +13,10 @@
 #  ansible.builtin.raw: ln -s /usr/bin/python3 /usr/bin/python
 #  become: true
 
+- name: Install Python3
+  raw: apt-get update && apt-get install -y python3
+  become: true
+
 # tasks file for vector-role
 - name: Get vector distrib
   ansible.builtin.get_url:
@@ -38,4 +42,3 @@
   ansible.builtin.systemd:
     name: vector.service
     enabled: true
-
